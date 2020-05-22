@@ -1,0 +1,29 @@
+#if its core no need, e.g. app need app/1---
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myns
+  labels:
+    dept: engineering
+    app: fortune
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune-pod
+  namespace: myns
+  labels:
+    dept: engineering
+    app: fortune
+spec:
+  containers:
+  - name: fortune-container
+    image: samohx/fortune:v1
+    imagePullPolicy: IfNotPresent
+    ports: 
+    - name: APP_PORT
+      containerPort: "8080"
+    ports:
+    - name: http-port
+      containerPort: 8080 
